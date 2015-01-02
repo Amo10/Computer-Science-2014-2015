@@ -1,0 +1,39 @@
+[1000.0, 2150.0, 3472.5, 4993.375, 6742.381249999999]
+[1000.0, 2040.0, 3142.0, 4142.0, 5266.26]
+The answer to problem 1 is: 49
+The answer to problem 2 is: 73
+
+{'maximum': 5147425.152022102, 'minimum': 126366.34088141497, 'median': 668234.3149249866, 'Q1': 448367.99760018516, 'success_rate': 26.6, 'Q3': 1051225.8901851382}
+
+{'maximum': 1763605.4559124082, 'minimum': 105498.49752459016, 'median': 390684.8306045367, 'Q1': 281826.0085838559, 'success_rate': 2.9000000000000004, 'Q3': 565863.1532593416}
+
+Therefore you have a higher chance of accumulating over $1000000 if you save 10% per year for 30 years than if you save 15% per year for 20 years.
+
+If your salary increases by 2% every year you are 11.099999999999998 % more likely to accumulate $1000000.
+
+The median of 5% is: 339281.4943247641 
+The median of 10% is: 684716.3729347497 
+The difference between the two is: 345434.8786099856 
+Therefore when you double the saving amount the median value approximately doubles.
+
+The median of 15 years is: 336932.82081601315 
+The median of 30years is: 73832.32276115107 
+The difference between the two is: 263100.4980548621 
+Therefore when you double the ampount of years the median amount is less than double of what it was for 15 years.
+
+The median of 5% for 30 years is: 342759.6148741228 
+The median of 15% for 10 years is: 116210.82277816001 
+The difference between the two is 226548.79209596277
+
+The median of 5% is: 454934.6910885131 
+The median of 10% is: 878854.3233478185 
+The difference between the two is: 423919.63225930533 
+Therefore when you double the saving amount, while getting a 3% raise every year, the median value approximately doubles.
+
+The median of 15 years is: 352831.7135605349 
+The median of 30years is: 85378.56056948405 
+The difference between the two is: 267453.15299105085 
+Therefore when you double the ampount, while getting a 3% raise, of years the median amount is less than double of what it was for 15 years.
+
+The median of 5% for 30 years if you are getting a 3% raise is: 448468.3470991808 
+The median of 15% for 10 years if you are getting a 3% raise is: 126632.28533036468

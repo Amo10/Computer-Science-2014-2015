@@ -1,0 +1,80 @@
+filein = open('randomnumbers.txt','r')
+numlist = []
+numdict = {}
+for line in filein:
+    value = int(line.strip())
+    numlist.append(value)
+    if value in numdict:
+        numdict[value] += 1
+    else:
+        numdict[value] = 1
+filein.close()
+
+
+
+high = 0
+low = 100
+for i in numlist:
+    if i > high:
+        high = i
+    if i < low:
+        low = i
+
+print(low,high)
+
+clone = numlist[:]
+for a in range(49):
+    clo = 100
+    chi = 0
+    for i in clone:
+        if i > chi:
+            chi = i
+        if i < clo:
+            clo = i
+    clone.remove(chi)
+    clone.remove(clo)
+tot = 0
+for a in clone:
+    tot = tot + a
+median = tot/2
+print(median)
+
+clone2 = numlist[:]
+clone2.sort()
+print((clone2[49]+clone2[50])/2)
+
+mean = 0
+for b in numlist:
+    mean += b
+mean = mean/len(numlist)
+print(mean)
+
+mode = 0
+for i in numdict:
+    if numdict[i] > mode:
+        mode = numdict[i]
+modelist = []
+for i in numdict:
+    if numdict[i] == mode:
+        modelist.append(i)
+print(modelist,mode)
+
+sigma2 = 0
+for x in numlist:
+    sigma2 += (x-mean)**2.
+sigma2 = sigma2/len(numlist)
+sigma = sigma2**(1./2.)
+print(sigma)
+
+inside1sd = 0
+for x in numlist:
+    if x>mean-sigma and x < mean+sigma:
+        inside1sd += 1
+print(inside1sd,"%")
+
+inside2sd = 0
+for x in numlist:
+    if x>mean-2*sigma and x < mean+2*sigma:
+        inside2sd += 1
+print(inside2sd,"%")
+    

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Classes</key>
+	<dict>
+		<key>AbstractObject</key>
+		<dict>
+			<key>Attributes</key>
+			<dict>
+				<key>classCode</key>
+				<dict>
+					<key>Description</key>
+					<string>The class of the object.</string>
+					<key>Name</key>
+					<string>class</string>
+				</dict>
+				<key>scriptingProperties</key>
+				<dict>
+					<key>Description</key>
+					<string>All of the object's properties.</string>
+					<key>Name</key>
+					<string>properties</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>A scriptable object.</string>
+			<key>Name</key>
+			<string>item</string>
+			<key>PluralName</key>
+			<string>items</string>
+		</dict>
+		<key>NSApplication</key>
+		<dict>
+			<key>Attributes</key>
+			<dict>
+				<key>dontSaveDuplicates</key>
+				<dict>
+					<key>Description</key>
+					<string>don't save duplicates</string>
+					<key>Name</key>
+					<string>duplicate skipping</string>
+				</dict>
+				<key>fileTypeList</key>
+				<dict>
+					<key>Description</key>
+					<string>the list of file types to extract</string>
+					<key>Name</key>
+					<string>types to extract</string>
+				</dict>
+				<key>makeThumbnails</key>
+				<dict>
+					<key>Description</key>
+					<string>Generate thumbnail icons on images found</string>
+					<key>Name</key>
+					<string>thumbnail generation</string>
+				</dict>
+				<key>organizeOutput</key>
+				<dict>
+					<key>Description</key>
+					<string>Organize found files in folders</string>
+					<key>Name</key>
+					<string>organized results</string>
+				</dict>
+				<key>preferredTextEncoding</key>
+				<dict>
+					<key>Description</key>
+					<string>the preferred encoding for extracted PDF text: use either utf-8, utf-16, us-ascii, iso-8859-1, macintosh, or one of the Cocoa string encodings</string>
+					<key>Name</key>
+					<string>preferred text encoding</string>
+				</dict>
+				<key>preserveDates</key>
+				<dict>
+					<key>Description</key>
+					<string>copy dates from processed files to the extracted files</string>
+					<key>Name</key>
+					<string>preserve dates</string>
+				</dict>
+				<key>returnFoundFolders</key>
+				<dict>
+					<key>Description</key>
+					<string>return folders containing the found files instead of the files</string>
+					<key>Name</key>
+					<string>return folders</string>
+				</dict>
+				<key>saveFolder</key>
+				<dict>
+					<key>Description</key>
+					<string>the folder where the results should go</string>
+					<key>Name</key>
+					<string>results custom folder</string>
+				</dict>
+				<key>saveRadioChosenEnum</key>
+				<dict>
+					<key>Description</key>
+					<string>the folder where the results should go</string>
+					<key>Name</key>
+					<string>results location</string>
+				</dict>
+				<key>showResultsInFinder</key>
+				<dict>
+					<key>Description</key>
+					<string>show results in Finder after extracting files</string>
+					<key>Name</key>
+					<string>showing results</string>
+				</dict>
+				<key>showThumbFeedback</key>
+				<dict>
+					<key>Description</key>
+					<string>show thumbnail feedback while extracting images</string>
+					<key>Name</key>
+					<string>thumbnail feedback</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>The File Juicer Application</string>
+			<key>Name</key>
+			<string>application</string>
+			<key>PluralName</key>
+			<string>applications</string>
+		</dict>
+	</dict>
+	<key>Commands</key>
+	<dict>
+		<key>Juice</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>fileList</key>
+				<dict>
+					<key>Description</key>
+					<string>list of files and folders.</string>
+					<key>Name</key>
+					<string>files</string>
+				</dict>
+				<key>fileTypes</key>
+				<dict>
+					<key>Description</key>
+					<string>list of file types to search for.</string>
+					<key>Name</key>
+					<string>types</string>
+				</dict>
+				<key>saveRadioChosenEnum</key>
+				<dict>
+					<key>Description</key>
+					<string>the folder where the results should go</string>
+					<key>Name</key>
+					<string>results location</string>
+				</dict>
+				<key>scriptedResultsFolder</key>
+				<dict>
+					<key>Description</key>
+					<string>where to save the found files</string>
+					<key>Name</key>
+					<string>results folder</string>
+				</dict>
+				<key>showResultsInFinder</key>
+				<dict>
+					<key>Description</key>
+					<string>open the folder where the results are saved afterwards</string>
+					<key>Name</key>
+					<string>showing results</string>
+				</dict>
+				<key>transferEXIF</key>
+				<dict>
+					<key>Description</key>
+					<string>transfer the EXIF information from the RAW file to the extracted preview</string>
+					<key>Name</key>
+					<string>transfer EXIF</string>
+				</dict>
+				<key>largestPreview</key>
+				<dict>
+					<key>Description</key>
+					<string>extract only the largest preview</string>
+					<key>Name</key>
+					<string>largest preview</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Juice Files</string>
+			<key>Name</key>
+			<string>juice</string>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Commands and classes for File Juicer</string>
+	<key>Enumerations</key>
+	<dict>
+		<key>ResultLocation</key>
+		<dict>
+			<key>CustomFolder</key>
+			<dict>
+				<key>Description</key>
+				<string>A custom folder</string>
+				<key>Name</key>
+				<string>custom folder</string>
+			</dict>
+			<key>NextToInput</key>
+			<dict>
+				<key>Description</key>
+				<string>Next to the files juiced (on the desktop if they are from read only media).</string>
+				<key>Name</key>
+				<string>next to input</string>
+			</dict>
+			<key>OnTheDesktop</key>
+			<dict>
+				<key>Description</key>
+				<string>On the Desktop.</string>
+				<key>Name</key>
+				<string>on the desktop</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Name</key>
+	<string>File Juicer Scripting</string>
+</dict>
+</plist>

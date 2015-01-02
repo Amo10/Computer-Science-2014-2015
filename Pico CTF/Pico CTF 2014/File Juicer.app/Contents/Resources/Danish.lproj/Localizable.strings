@@ -1,0 +1,94 @@
+﻿/* No comment provided by engineer. */
+"A new beta version of File Juicer is available" = "Der er kommet en ny beta version ";
+
+/* No comment provided by engineer. */
+"A new version of File Juicer is available" = "Der er kommet en ny version af File Juicer";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuler";
+
+/* As in choose folder */
+"Choose" = "Vælg";
+
+/* No comment provided by engineer. */
+"Choose Folder" = "Vælg Mappe";
+
+/* No comment provided by engineer. */
+"Could not save a found file. Check for disk space, and where the file is set to be saved in the preferences" = "Kunne ikke arkivere en fundet fil. Check disk plads, og i preferencerne for hvor filen bliver gemt.";
+
+/* As in generating thumbnails */
+"Generating:" = "Genererer:";
+
+/* No comment provided by engineer. */
+"Go to Download Page" = "Gå til download siden";
+
+/* No comment provided by engineer. */
+"Juicing:" = "Juicer:";
+
+/* When registration number check fails */
+"License number is not valid!" = "Licens nummer er ikke gyldigt";
+
+/* No comment provided by engineer. */
+"No information about a new version is available!" = "Der er ingen information om ny version.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* skip generating thumbnails */
+"Skip" = "Spring over";
+
+/* No comment provided by engineer. */
+"Stop" = "Stop";
+
+/* When registration succeeded */
+"Thank You" = "Tak!";
+"Thank You!\nPortable Version Registered" = "Thank You!\nPortable Version Registered";
+
+/* As in generating thumbnails */
+"thumbnails" = "ikoner";
+
+/* Of File Juicer */
+"You have the newest version!" = "Du har den nyeste version!";
+
+/* For File Juicer */
+"Paid..." = "Betalt...";
+
+/* For the image in the main window (I'll put it in a pdf later) */
+"Drag files here" = "Træk filer hertil";
+
+/* For flash card juicing */
+"No Flash Cards/Disks Found!" = "Ingen flash kort/diske fundet!";
+
+/* When registration code or name does not match */
+"RegistrationFailed" = "De indtastede registreringsoplysninger er ugyldige. Kontroller, at indholdet i felterne Navn og Registreringsnummer er identisk med registreringsoplysningerne.";
+
+/* The menu item */
+"Registration..." = "Registrering...";
+
+"Watermark Reminder" = "File Juicer is Shareware.
+It is fully functional, but with reminders and watermarks until you register.";
+
+"FileJuicer is fully functional for %i days to let you try before you buy, but with watermarks in some images.\n" = "File Juicer er fuldt funktionsdygtigt i %i dage så du kan prøve det før køb, men med vandmærker i nogle billeder.\n";
+"The FileJuicer trial period has expired. JPEG and GIF will still get extracted but with watermarks in some images.\n" = "Prøveperioden for File Juicer er udløbet. JPEG og GIF bliver stadig ekstraheret men med vandmærker i JPEG og TIFF billeder.\n";
+/* When registration code or name does not match */
+"Your entry is too long." = "Det indtastede er for langt.";
+
+/* dropping files */
+"File too large" = "Fil for stor";
+
+/* If you want to convert WMV files you need a codec for QuickTime */
+"If you want to convert WMV files you need a codec for QuickTime" = "For at konvertere WMV filer skal du bruge en WMV codec til QuickTime";
+
+/* If you want to convert WMV files you need a codec for QuickTime */
+"Get Codec" = "Hent Codec";
+
+/* For the File Menu */
+"iPod Thumbs" = "iPod Thumbs";
+"iPod Photo Cache" = "iPod Photo Cache";
+"JPEG Thumbs" = "JPEG Ikoner";
+"64 x 64 Thumbs" = "64 x 64 Ikoner";
+"32 x 32 Thumbs" = "32 x 32 Ikoner";
+"iPhone and iPod Touch Backups" = "iPhone og iPod Touch Backups";
+"iTunes Album Artwork Cache" = "iTunes Album Artwork Cache";
+/* Generating Index files */
+"Index" = "Indeks";

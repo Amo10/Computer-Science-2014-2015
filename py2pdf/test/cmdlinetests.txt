@@ -1,0 +1,64 @@
+Test cases for stdin/stdout with commandline invocation.
+
+Notes: 
+
+  - multiPage option has been disabled whenever output is written 
+    to stdout.
+
+  - stdin/stdout tests have been don on Linux and Windoze 95,
+    Linux tests are all ok, Win95 are not (see comments below)
+
+  - tests on Macs are still outstanding (if there's any 
+    piping at all on Macs)
+
+
+
+1. Writing to stdout
+
+  - resulting file will have header equal to basename of 
+    input file and extention .pdf, except when --title used)
+
+  python py2pdf.py --stdout <file>
+
+  - ok on Linux
+  - doesn't work with PythonWin due to limitations 
+    with printing binary characters
+  - doesn't seem to work from pure DOS
+
+
+
+2. Writing to stdout, piping result to a file
+
+  (comments as above, but filename will be file.pdf)
+
+  python py2pdf.py --stdout <file> > file.pdf
+
+  - ok on Linux
+  - doesn't work with PythonWin due to limitations 
+    with printing binary characters
+  - ok from pure DOS
+
+
+3. Reading from stdin 
+ 
+  - does implicitly write to stdout
+
+  python py2pdf.py -
+
+  - ok on Linux
+  - doesn't work from PythonWin
+  - doesn't work from pure DOS (terminating input stream 
+    with CTRL-Z, but doesn't print all PDF due to binary
+    character limitations, it seems
+
+
+4. Reading from stdin, piping stdout to a file
+ 
+  - header is empty unless --title used
+
+  python py2pdf.py - > file.pdf
+
+  - ok on Linux
+  - doesn't work from PythonWin
+  - ok from pure DOS
+

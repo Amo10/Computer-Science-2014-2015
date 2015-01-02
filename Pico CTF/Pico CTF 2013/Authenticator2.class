@@ -1,0 +1,29 @@
+import java.io.Console;
+import java.io.PrintStream;
+
+class Authenticator
+{
+  public static char[] key;
+
+  public static void main(String[] paramArrayOfString)
+  {
+    key = new char[10];
+    key[0] = 'X';
+    key[1] = 'C';
+    key[2] = 'a';
+    key[3] = 'O';
+    key[4] = 'P';
+    key[5] = 'P';
+    key[6] = 'R';
+    key[7] = 'w';
+    key[8] = 'c';
+    key[9] = 'z';
+    Console localConsole = System.console();
+    String str = "ThisIsth3mag1calString1101";
+    while (!str.equals("ThisIsth3mag1calString1101"))
+      str = localConsole.readLine("Enter password:", new Object[0]);
+    for (int i = 0; i < key.length; i++)
+      System.out.print(key[i]);
+    System.out.println("");
+  }
+}

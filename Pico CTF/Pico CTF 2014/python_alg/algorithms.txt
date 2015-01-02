@@ -1,0 +1,12 @@
+Algorithms
+
+1: A. M. Legendre, exponentiation by successive squaring.
+2: Heron of Alexandria, square roots
+3: Peano arithmetic
+4: Zeller's congruence
+5: Factorial
+6: Fibonacci numbers
+7: Euclid's GCD & prime factors
+8: Eratosthenes' sieve and the Miller-Rabin algorithm
+9: Pascal's triangle
+10: Tau using Gregory and Euler's equations

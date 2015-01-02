@@ -1,0 +1,50 @@
+1) Build tarballs of base-files and fink, as appropriate
+(see the srcdist HOWTO)
+
+2) Release them via the SourceForge FR system. Do *not* send out
+the notice emails
+
+3) Create/update the .info files for the above mentioned tar balls
+and add them to CVS
+
+4) Clean system:
+  rm -rf /sw /usr/X11R6 /etc/X11 /Application/XDarwin.app
+
+5) Perform a fink bootstrap using the tarballs you created in 1)
+
+6) Create /bindist (you can use any other path if you prefer)
+and _move_ the .deb's from /sw/fink there. Note that you
+should retain the structure, compare with the bindist
+dir on the webserver.
+
+7) Now _copy_ the finkinfo directories to /bindist. Verify
+no .info/.patch files are missing.
+
+8) Temporarily add unstable to fink.conf. Execute
+  fink scanpackages
+then undo your changes to fink.conf again
+
+9) Copy /sw to /fink-image/sw (or any other empty directory). Remove
+everything from the src dir, and all .debs.
+
+10) Create an Installer-Package using the data from the old
+binary installer (TODO: put these files into CVS, along with more
+detailed instructions, or even a build script)
+
+11) Now test the binary installer!
+
+12) If all worked fine, you can now create a disk image with the installer,
+Welcome.rtf, ReadMe.rtf, and License.rtf.
+
+13) Release package tarball, fink-full tarball and binary installer via the FRS.
+
+14) Update the package database
+
+15) Send out announcement:
+ * web page
+ * email to fink-announce
+ * notify FRS watchers
+ * SF news item
+ * Versiontracker
+ * freshmeat
+ 

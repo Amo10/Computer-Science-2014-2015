@@ -1,0 +1,100 @@
+#!/usr/bin/perl
+# -*- mode: Perl; tab-width: 4; -*-
+
+# Checks performed:
+# No previous Fink installation
+# Installer is for current OS X version
+# Installer is for current OS X architecture
+# Xcode is present
+
+use File::Find;
+use POSIX qw(uname);
+
+my $basedir = "FINK_ROOT";
+my $PACKAGE_PATH = $ENV{PACKAGE_PATH};
+
+# For what OS X major-version are we configured?
+my $target_OSX = 'OSX_VERSION'; # is replaced by buildpkg.sh script
+
+# For what CPU arch are are built?
+my $target_CPU = 'CPU_NAME'; # is replaced by buildpkg.sh script
+
+# set to index (16-31) of msg in *.lproj/InstallationCheck.strings if error
+my $errmsg = 0;
+
+DO_CHECKS:
+{
+	print "running InstallationCheck...\n";
+
+	# we're only for virgin systems, not upgrading/overwriting existing fink
+	if ((-e "$basedir") || (-l "$basedir")) {
+		print "Fink Installer: ROOT FINK_ROOT exists!\n";
+		$errmsg = 16;
+		last;
+	}
+
+	# x.y.z form (10.4.6, for example)
+	my $OSXVersion = qx{defaults read /System/Library/CoreServices/SystemVersion ProductUserVisibleVersion};
+	$OSXVersion = '' if !defined $OSXVersion;
+	chomp $OSXVersion;
+
+	# make sure OS X version is the distro for which we're configured
+      # note: if this regex doesn't work, a simpler version is /^Q$target_OSX/
+	if ($OSXVersion !~ /^\Q$target_OSX\E(\.|\Z)/) {
+		print "Fink Installer: This Installer is for Mac OS X $target_OSX, not $OSXVersion. Bailing out.\n";
+		# no printf in .strings, so gotta case on hard-coded values:(
+		if ($target_OSX eq '10.3') {
+			$errmsg = 20;
+		} elsif ($target_OSX eq '10.4') {
+			$errmsg = 21;
+		} elsif ($target_OSX eq '10.5') {
+			$errmsg = 22;
+		} elsif ($target_OSX eq '10.6') {
+			$errmsg = 23;
+		} elsif ($target_OSX eq '10.7') {
+			$errmsg = 24;
+		} else {
+			$errmsg = 4;
+		}
+		last;
+	} # version check
+
+	# human-readable string ("Power Macintosh", "i386" or "x86_64")
+	# not a config.guess platform value
+	my $CPUArch = (uname())[4];
+
+	# make sure CPU arch is the one for which we're built
+	if ($CPUArch ne $target_CPU) {
+		print "Fink Installer: This Installer is for $target_CPU machines, not $CPUArch. Bailing out.\n";
+		# no printf in .strings, so gotta case on hard-coded values:(
+		if ($target_CPU eq 'Power Macintosh') {
+			$errmsg = 25;
+		} elsif ($target_CPU eq 'i386') {
+			$errmsg = 26;
+		} elsif ($target_CPU eq 'x86_64') {
+			$errmsg = 27;
+		} else {
+			$errmsg = 4;
+		}
+		last;
+	} # CPU arch check
+
+	# since this is a source installer, make sure we have Xcode.
+	# This only works for 10.7+
+	# $target_OSX already shown to be correct for system
+	if ($target_OSX eq '10.7') {
+		if (! -e "/usr/bin/xcodebuild") {
+			$errmsg = 17;
+		}
+	} # Xcode check
+}
+
+# see http://developer.apple.com/documentation/DeveloperTools/Conceptual/SoftwareDistribution/Concepts/sd_install_check_ref.html
+my $result = 0;  # all is okay
+if ($errmsg) {
+	if ($errmsg < 16 || $errmsg > 31) {
+		$errmsg = 4;  # generic builtin default msg if out-of-bounds
+	}
+	$result = ( 1 << 6 ) | ( 1 << 5 ) | $errmsg;  # fatal error bit-vector
+}
+exit $result;

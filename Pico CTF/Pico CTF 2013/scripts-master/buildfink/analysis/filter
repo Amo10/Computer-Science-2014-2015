@@ -1,0 +1,252 @@
+#!/usr/bin/perl
+
+#Copyright (c) 2005 Apple Computer, Inc.  All Rights Reserved.
+#
+#This program is free software; you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation; either version 2 of the License, or
+#(at your option) any later version.
+#
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU General Public License
+#along with this program; if not, write to the Free Software
+#Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+=pod
+
+=head1 SYNOPSIS
+
+filter -- Filter the contents of a bunch of files into potentially-overlapping sets by matching against multiple regular expressions
+
+=head1 USAGE
+
+	filter [-F] [-f FILTERS] [-x XML FILTERS] -o OUTDIR FILES_OR_DIRECTORIES...
+	filter [-F] [-f FILTERS] [-x XML FILTERS] -p
+
+C<FILTERS> specifies a "filter file", or a directory which will be recursively processed an all files
+in which will be processed as filter files.  The filter file defines the regular expressions
+which will be used to construct the sets, see below for syntax.
+
+C<XML FILTERS> is like C<FILTERS> but for XML-format filter files.
+
+An -f or -x spec is required.
+
+C<OUTDIR> specifies the output directory.  For each set, a file whose name is the name of the set
+will be created in this directory.  Set names may contain a /, causing subdirectories to be
+created.
+
+C<FILES_OR_DIRECTORIES> is the files you want to match against C<FILTERS>.  Directories will
+be processed recursively.
+
+The C<-F> option, if specified, will cause C<filter> to only allow one regular expression per
+file to match; that regular expression will be the one which matches earliest in the file.
+If multiple regular expressions match at the same position, it will use the one which
+is defined first.
+
+The C<-p> option enables pipe mode, in which the data to be matched
+against the filters is read from STDIN instead of from
+FILES_OR_DIRECTORIES and the names of the filters that match are
+printed to STDOUT instead of storing filenames into the OUTDIR
+hierarchy.
+
+=head1 FILTER FILES
+
+=head2 XML FILTER FILES
+
+XML filter files should have a top-level "filters" tag.  Inside this tag
+should be a series of tags with a "name" attribute, a "flags" attribute,
+and CDATA containing the body of the regular expression.
+
+	<filters>
+		<filter name="set1" flags="i"E>foo</filter>
+		<filter name="set2" flags="i"E>bar</filter>
+	</filters>
+
+=head2 EVAL-BASED FILTER FILES
+
+Filter files will be evaluated as Perl code, and should return an anonymous listref whose elements
+are hashrefs with a 'name' key, the name of the set, and a 'regex' key, a
+regular expressions quoted via qr//.  For instance:
+
+	[
+		{name => "set1", regex => qr/foo/i},
+		{name => "set2", regex => qr/bar/i},
+	];
+
+If you don't care about the ordering of your filters, which may be relevant for C<-F>,
+you may also use an anonymous hashrefs whose keys are set names and whose values are
+qr-quoted regular expressions.
+
+=head1 ATTRIBUTE VALUES
+
+You can also treat each filter as an attribute which can have a value.
+To capture the value for the attribute, use capturing parentheses in your
+regular expression, like:
+
+	flavor => qw/Ice Cream: (.*)/
+
+The output file for flavor will now have the names of the files
+that matched, each of which is followed by a tab and then whatever
+was matched by the capture group.  If you have multiple capture groups,
+the value of the last, innermost one will be used, so in:
+
+	(foo) (bar (baz (buzz)))
+
+you'd get C<buzz> as your value.
+
+=cut
+
+
+use strict;
+use warnings;
+use File::Basename;
+use Getopt::Std;
+use List::Util qw(reduce);
+use XML::Simple qw(:strict);
+
+our(%options, @filters, $filtindex);
+sub load_filter_file($$);
+sub process_input_file($);
+
+if(!getopts('Fpx:f:o:', \%options)) { exit 1; }
+
+my $outdir;  # undef if in -p mode
+if ($options{p}) {
+	die "Cannot use -o in -p mode\n" if $options{o};
+	die "Cannot pass filenames on commandline in -p mode\n" if @ARGV;
+	$outdir = undef;
+} else {
+	die "Must specify an output directory!\n" unless $options{o};
+	$outdir = $options{o};
+}
+
+die "Must specify filter source!\n" unless $options{f} or $options{x};
+$filtindex = 0;
+
+sub load_filter_file($$) {
+	my($file, $is_xml) = @_;
+
+	if(-d $file) {
+		opendir(DIR, $file) or die "Couldn't open directory $file: $!\n";
+		my @files = map {"$file/$_"} grep {$_ ne "." and $_ ne ".."} readdir(DIR);
+		closedir(DIR);
+
+		load_filter_file($_, $is_xml) foreach @files;
+	} elsif($is_xml) {
+		my $xml_filters = XMLin($file, ForceArray => [qw(filter)], KeyAttr => []);
+
+		foreach my $filter (@{$xml_filters->{filter}}) {
+			# qr// doesn't let us have a variable flags, so insert them into the RE body.
+			# /(?i)foo/ is equivalent to /foo/i
+			my $regex;
+			$regex = "(?" . $filter->{flags} . ")" if $filter->{flags};
+			$regex .= $filter->{content};
+
+			push @filters, {name => $filter->{name}, regex => qr/$regex/, index => $filtindex++};
+		}
+	} else {
+		my $subfilter = do $file;
+		if(!$subfilter) {
+			die "Couldn't parse $file: $@\n" if $@;
+			die "Couldn't load $file: $!\n" if !defined($subfilter);
+			die "File $file didn't return a true value!\n";
+		}
+
+		if(ref($subfilter) eq "HASH") {
+			push @filters, map { {name => $_, regex => $subfilter->{$_}, index => $filtindex++} } keys %$subfilter;
+		} else {
+			$_->{index} = $filtindex++ foreach @$subfilter;
+			push @filters, @$subfilter;
+		}
+	}
+}
+
+load_filter_file($options{f}, 0) if $options{f};
+load_filter_file($options{x}, 1) if $options{x};
+
+sub process_input_file($) {
+	my $input = shift;
+
+	my $contents;  # slurp of a single datafile
+
+	if (!defined $input) {
+		$contents = join '', <STDIN>;
+	} elsif (-d $input) {
+		opendir(DIR, $input) or die "Couldn't opendir $input: $!\n";
+		my @files = map {"$input/$_"} grep {$_ ne "." and $_ ne ".."} readdir(DIR);
+		closedir(DIR);
+
+		process_input_file($_) foreach @files;
+	} else {
+		open(FILE, $input) or die "Couldn't open $input: $!\n";
+		$contents = join("", <FILE>);
+		close FILE;
+	}
+
+	# we've got the data now, regardless of how we were called
+
+		foreach my $filter(@filters) {
+			if($contents =~ /$filter->{regex}/) {
+				$filter->{matched} = 1;
+
+				my $last_paren = $#+;
+				# No, I didn't just sneeze on the keyboard.
+				# That variable holds the number of capture
+				# groups in the last successful match.
+				# We use this to determine if there were any
+				# capture groups in the RE.  Then, we use
+				# $^N to get the value of the last capture
+				# group.
+
+				# $-[0] is index in string of last successful match
+				$filter->{matchpos} = $-[0];
+
+				$filter->{outfile} = ( defined $outdir ? "$outdir/".$filter->{name} : undef);
+
+				$filter->{outtext} = (defined $input ? basename($input)."\t" : '');  # give filename if known
+				$filter->{outtext} .= $filter->{name}."\t" if !defined $outdir;  # give filtername if it wouldn't be known from outfile
+				$filter->{outtext} .= $^N if $last_paren;
+				$filter->{outtext} .= "\n";
+			} else {
+				$filter->{matched} = 0;
+			}
+		}
+
+		my @matched_filters = grep {$_->{matched}} @filters;
+		return unless @matched_filters;
+
+		if($options{F}) {
+			# If we're using -F mode, only get the earliest match
+			@matched_filters = reduce {
+				if(($a->{matchpos} <=> $b->{matchpos} or $a->{index} <=> $b->{index}) <= 0) {
+					$a;
+				} else {
+					$b;
+				}
+			} @matched_filters;
+		}
+
+		foreach my $filter(@matched_filters) {
+			if (defined $filter->{outfile}) {
+				# have a filename, so append outtext there
+				system("mkdir", "-p", dirname($filter->{outfile}));
+
+				open(my $out_fh, '>>', $filter->{outfile}) or die "Couldn't open ".$filter->{name}." for output: $!\n";
+				print $out_fh $filter->{outtext};
+				close $out_fh;
+			} else {
+				# no outfile, so just dump outtext to STDOUT
+				print $filter->{outtext};
+			}
+		}
+}
+
+if (@ARGV) {
+	process_input_file($_) foreach @ARGV;  # process each passed logfile (or dir of logfiles)
+} else {
+	process_input_file(undef);  # sentinel for processing from STDIN
+}

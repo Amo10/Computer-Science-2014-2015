@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>esellerate</key>
+	<string>http://store.eSellerate.net/s.aspx?s=STR0118920606</string>
+	<key>esellerate1</key>
+	<string>http://store.eSellerate.net/s.aspx?s=STR8297008775</string>
+	<key>esellerateProductID</key>
+	<string>JUICER</string>
+	<key>kagi</key>
+	<string>http://store.kagi.com/?6CYBE_LIVE</string>
+	<key>kagiProductID</key>
+	<string>echoone_filejuicer</string>
+	<key>paypal</key>
+	<string>https://www.paypal.com/xclick/business=shop%40echoone.com&amp;item_name=File+Juicer&amp;amount=17.95&amp;no_shipping=0&amp;return=http%3A//echoone.com/FileJuicer/FileJuicerThankYou.html&amp;no_note=1&amp;currency_code=USD</string>
+</dict>
+</plist>

@@ -1,0 +1,70 @@
+py2pdf 0.5 changelog
+
+
+CHANGES FROM VERSION 0.4 to 0.5:
+- added conversion to PDF from arbitrary ASCII files
+- added input option (python/ascii)
+- added new option tabSize
+- added new option noOutline
+- added new option title
+- added PDF outline bookmarks
+- fixed stdout option
+- fixed stdin files ('-')
+- fixed buglet with no commandline argument error
+- fixed a buglet with comments in PyFontify 0.3.3 (JvR)
+- fixed path extension in header (now original extension is used)
+- fixed buglet with multiPage feature
+- replaced all tab expansions with only one
+- replaced format option (pdf/txt)
+- renamed layouter and printer classes
+
+CHANGES FROM VERSION 0.3 to 0.4:
+- fixed bug: lines in non-Courier extending over right margin 
+- removed sys.path.append('.')
+- now using reportlab.lib.fonts
+- removed tagFunc as init-argument for PDFPrettyPrinter
+- demo.py with non-commandline samples
+- added initial version of smart line wrapping
+- fixed bug: config file options after empty lines now ok
+- adapted to new ReportLab color classes
+- switched to getopt with GNU long option names
+- changed bgColor option to bgCol
+- implemented more secure use of eval()
+
+CHANGES FROM VERSION 0.2 to 0.3:
+- added monochrome PDFs
+- made variable background color
+- made all code colors variable
+- added various fonts and font sizes
+- added various paper formats
+- added line numbering
+- added config file containing options
+- added multi-page output
+- moved much stuff into PDFPrettyPrinter class
+- removed all CGI stuff from code
+- removed whitespace rendering temporarily
+- tested on Macs
+
+
+TODO FOR NEXT VERSION:
+- add site config file option containing default options 
+  (plus some global variable describing where to search it)
+- check usage of Options.update(), improve
+- add a log option (reverse of config option)
+- test parameter tag, remove if not needed
+- improve smart line wrapping (maybe add meta characters)
+- really support/test mxTextTools (marcs option)
+- handle single-dash options in config files
+- properly right-justify line numbers if other than Courier
+- add time stamp to page decoration frame
+- support dimensions for paperSize command-line option
+- reduce end user risk to accidentally use tags in their code
+- improve some comments
+- create JPEGs instead of PDFs, too (PDFgen...)
+- add artificial indentation with proportional fonts (hairy)
+- write tutorial or howto
+- use ReportLab's units.py, pagesizes.py (postponed)
+- re-introduce whitespace rendering (postponed)
+- add a summary page (postponed)
+- implement URL option with PDF hyperlinks (postponed)
+- generalize/re-unify with py2html, maybe (long term)

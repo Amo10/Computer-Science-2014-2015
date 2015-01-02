@@ -1,0 +1,40 @@
+#!/bin/sh
+set -e
+
+if [ -z "$BDBASE" ]; then
+  echo "BDBASE not set"
+  exit 1
+fi
+cd "$BDBASE"
+
+if [ -z "$BDARCH" ]; then
+  echo "BDARCH not set"
+  exit 1
+fi
+
+tree=$1
+if [ -z "$tree" ]; then
+  if [ -n "$CURREL" ]; then
+    tree="fink-$CURREL"
+  else
+    tree="fink-`cat $BDDATA/current`"
+  fi
+  echo "Defaulting to tree $tree"
+fi
+
+if [ ! -d "dists/$tree" ]; then
+  echo "ERROR: invalid tree '$tree'"
+  exit 1
+fi
+
+for dir in main crypto ; do
+  basedir="dists/$tree/$dir/binary-darwin-$BDARCH"
+  if [ ! -d $basedir ]; then
+    echo "ERROR: no binary directory for $tree/$dir"
+  else
+    echo "Scanning $basedir"
+    dpkg-scanpackages "$basedir" "$BDDATA/override" | gzip > "$basedir/Packages.gz"
+  fi
+done
+
+exit 0

@@ -1,0 +1,93 @@
+﻿/* No comment provided by engineer. */
+"A new beta version of File Juicer is available" = "Está disponível uma nova versão beta do File Juicer";
+
+/* No comment provided by engineer. */
+"A new version of File Juicer is available" = "Está disponível uma nova versão do File Juicer";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* As in choose folder */
+"Choose" = "Escolher";
+
+/* No comment provided by engineer. */
+"Choose Folder" = "Escolher a Pasta";
+
+/* No comment provided by engineer. */
+"Could not save a found file. Check for disk space, and where the file is set to be saved in the preferences" = "Não é possível guardar um ficheiro encontrado. Verifique o espaço no disco e onde está definido, nas preferências, o local para o guardar";
+
+/* As in generating thumbnails */
+"Generating:" = "Gerando:";
+
+/* No comment provided by engineer. */
+"Go to Download Page" = "Ir para a Página de Descarregar";
+
+/* No comment provided by engineer. */
+"Juicing:" = "Espremendo:";
+
+/* When registration number check fails */
+"License number is not valid!" = "O Número da Licença não é válido!";
+
+/* No comment provided by engineer. */
+"No information about a new version is available!" = "Não há informação disponível sobre uma nova actualização!";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* skip generating thumbnails */
+"Skip" = "Passar";
+
+/* No comment provided by engineer. */
+"Stop" = "Parar";
+
+/* When registration succeeded */
+"Thank You" = "Obrigado";
+"Thank You!\nPortable Version Registered" = "ObrigadoYou!\nVersão Portátil registada";
+
+/* As in generating thumbnails */
+"thumbnails" = "miniaturas";
+
+/* Of File Juicer */
+"You have the newest version!" = "Tem a versão mais recente!";
+
+/* For File Juicer */
+"Paid..." = "Pago...";
+
+/* For the image in the main window (I'll put it in a pdf later) */
+"Drag files here" = "Arraste ficheiros para aqui";
+
+/* For flash card juicing */
+"No Flash Cards/Disks Found!" = "Não foram encontrados Cartões/Discos Flash!";
+
+/* When registration code or name does not match */
+"RegistrationFailed" = "A informação de registo que introduziu não é válida. Verifique se \"registado a\" e \"número de registo\" foram introduzidos exatamente como se vê na sua informação de registo.";
+
+/* The menu item */
+"Registration..." = "Registo...";
+
+"Watermark Reminder" = "File Juicer é de Partilha (Shareware).\nEstá completamente funcional mas com avisos e marcas-de-água até que se registe.";
+
+"FileJuicer is fully functional for %i days to let you try before you buy, but with watermarks in some images.\n" = "O FileJuicer está completamente funcional durante %i dias para lhe permitir testá-lo antes de comprar mas marcas-de-água nalgumas imagens.\n";
+"The FileJuicer trial period has expired. JPEG and GIF will still get extracted but with watermarks in some images.\n" = "O período de teste do FileJuicer terminou. JPEG e GIF continuam a ser extraídas mas com marcas-de-água nalgumas imagens.\n";
+/* When registration code or name does not match */
+"Your entry is too long." = "A sua entrada é demasiado longa.";
+
+/* dropping files */
+"File too large" = "Ficheiro demasiado grande";
+
+/* If you want to convert WMV files you need a codec for QuickTime */
+"If you want to convert WMV files you need a codec for QuickTime" = "Se quiser converter ficheiros WMV precisa de um codec para o QuickTime";
+
+/* If you want to convert WMV files you need a codec for QuickTime */
+"Get Codec" = "Obter Codec";
+
+/* For the File Menu */
+"iPod Thumbs" = "Miniaturas iPod";
+"iPod Photo Cache" = "Memória Foto iPod";
+"JPEG Thumbs" = "Miniaturas JPEG";
+"64 x 64 Thumbs" = "Miniaturas 64 x 64";
+"32 x 32 Thumbs" = "Miniaturas 32 x 32";
+"iPhone and iPod Touch Backups" = "Cópias de segurança do iPhone e iPod Touch";
+"iTunes Album Artwork Cache" = "Memória do iTunes Album Artwork";
+/* Generating Index files */
+"Index" = "índice";

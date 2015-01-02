@@ -1,0 +1,60 @@
+#!/usr/bin/perl -w
+
+$| = 1;
+require 5.006;  # perl 5.6.0 or newer required
+use strict;
+
+use Fink::Package;
+use Fink::PkgVersion;
+use Fink::Config qw($config $basepath);
+
+my ($config, $configpath);
+$configpath = "/sw/etc/fink.conf";
+if (-f $configpath) {
+    $config = &Fink::Services::read_config($configpath);
+} else {
+    print "ERROR: Configuration file \"$configpath\" not found.\n";
+    exit 1;
+}
+
+Fink::Package->require_packages();
+
+my ($pname, $package, $license);
+
+my %allowed_license_values = map {$_, 1}
+  (
+"Bundle",
+   "GPL", "LGPL", "GPL/LGPL", "BSD", "Artistic", "Artistic/GPL", "GFDL", 
+   "GPL/GFDL", "LGPL/GFDL", "GPL/LGPL/GFDL", "LDP", "GPL/LGPL/LDP", 
+   "OSI-Approved", "Public Domain", 
+#         "Restrictive", "Commercial",
+   "Restrictive/Distributable"
+   );
+
+
+open(EXCLUDES, ">excludes") or die "can't write excludes\n";
+open(EXCLUDESLOG, ">excludes.log") or die "can't write excludes.log\n";
+
+foreach $pname (@ARGV) {
+#$pname = shift;
+#$package = Fink::Package->package_by_name($pname);
+$package = Fink::PkgVersion->match_package($pname);
+#print "$package\n";
+$license = $package->get_license();
+if (not length $license) {
+    if ($package->is_type('bundle')) {
+	$license = "Bundle";
+    } else {
+	$license = "No license";
+    }
+}
+print "$pname: $license\n";
+if (not $allowed_license_values{$license}) {
+    print EXCLUDESLOG "$pname: $license\n";
+    print EXCLUDES "$pname\n";
+}
+
+}
+
+close(EXCLUDES) or die "can't write excludes\n";
+close(EXCLUDESLOG) or die "can't write excludes.log\n";

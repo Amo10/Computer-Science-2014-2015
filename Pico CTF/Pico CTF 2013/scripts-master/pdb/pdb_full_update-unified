@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+echo "Starting PDB update: `date`"
+
+./refresh && ./inject
+
+./fix_permissions.sh
+
+echo "Refreshing section list"
+if [ -f finksql ]; then
+  ./finksql < sections.sql
+else
+  $HOME/bin/finksql < sections.sql
+fi
+
+echo "Finished PDB update: `date`"
+
+exit 0

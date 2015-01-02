@@ -1,0 +1,268 @@
+%PDF-1.2
+%םל¶¾
+1 0 obj
+<<
+/Type /Catalog
+/Pages 3 0 R
+/Outlines 2 0 R
+/PageMode /UseNone
+>>
+endobj
+2 0 obj
+<<
+  /First
+      22 0 R
+  /Type
+      /Outlines
+  /Last
+      23 0 R
+  /Count
+      2
+>>
+endobj
+3 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [
+20 0 R 
+]
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Courier
+/Encoding /MacRomanEncoding
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Courier-Bold
+/Encoding /MacRomanEncoding
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F3
+/BaseFont /Courier-Oblique
+/Encoding /MacRomanEncoding
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F4
+/BaseFont /Courier-BoldOblique
+/Encoding /MacRomanEncoding
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F5
+/BaseFont /Helvetica
+/Encoding /MacRomanEncoding
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F6
+/BaseFont /Helvetica-Bold
+/Encoding /MacRomanEncoding
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F7
+/BaseFont /Helvetica-Oblique
+/Encoding /MacRomanEncoding
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F8
+/BaseFont /Helvetica-BoldOblique
+/Encoding /MacRomanEncoding
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F9
+/BaseFont /Times-Roman
+/Encoding /MacRomanEncoding
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F10
+/BaseFont /Times-Bold
+/Encoding /MacRomanEncoding
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F11
+/BaseFont /Times-Italic
+/Encoding /MacRomanEncoding
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F12
+/BaseFont /Times-BoldItalic
+/Encoding /MacRomanEncoding
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F13
+/BaseFont /Symbol
+/Encoding /MacRomanEncoding
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F14
+/BaseFont /ZapfDingbats
+/Encoding /MacRomanEncoding
+>>
+endobj
+18 0 obj
+  <<
+		/F1 4 0 R 
+		/F2 5 0 R 
+		/F3 6 0 R 
+		/F4 7 0 R 
+		/F5 8 0 R 
+		/F6 9 0 R 
+		/F7 10 0 R 
+		/F8 11 0 R 
+		/F9 12 0 R 
+		/F10 13 0 R 
+		/F11 14 0 R 
+		/F12 15 0 R 
+		/F13 16 0 R 
+		/F14 17 0 R 
+		>>
+
+endobj
+19 0 obj
+<</Title (test4.py)
+/Author (py2pdf 0.5)
+/CreationDate (D:20000508120633)
+/Producer (PDFgen)
+/Subject ()
+>>
+endobj
+20 0 obj
+<<
+/Type /Page
+/Parent 3 0 R
+/Resources
+<<
+    /Font 18 0 R
+    /ProcSet [/PDF /Text /ImageC]
+>>
+/MediaBox [0 0 595 841]
+/Contents 21 0 R
+
+
+>>
+endobj
+21 0 obj
+<< /Length 525 /Filter [/ASCII85Decode /FlateDecode]>>
+stream
+Gb"/!b>,r/&A2*05E*`2jl"j,*Y([c.Nrds_T-!2`$p6a6&@,Mn$1]E<"4m(
+n[K-#/$F,>B6Lrs<$,^h;W(ef15iqQL^_KP*lJdG`,K)d%%L--M+I,MJ.eL6
+EB%?ZC4`ReQbu)qC9H._O\]3lmP2R'e.UH6amHt;29-4u&0VI))&EJS.47=J
+r"X*1/PO@FW7bs:[Cs#&3$fIn$91X9as.GC@u*4&;iBQ(;8U3k3pUs*>t%iH
+iXDDOI+ME3NgCAp[pG]aj+R:6h4J&XIuTli0k"_)`Af4V[s8)SWsY^Q,ZQ>a
+R&aF*q3+L7Q`2N9XR`C0gemU9R5>Fo,+JCq=LHG7e]L+"NtIYZbJ_gIJQ@Jj
+ZYo>SM8^qsn!c]>-Sr5%kgIb`KW30Hr[fh])lp:g^MF(u[)b0"o-\P?c?t#J
+0CXKSkjNp81V/*SD?`88W="Kh9$jM?O,JtR)UrcF?e0S>phQk[Fnq"8IqIrh
+mf1\WC$P_Pqi-:kb.S?>($(em~>
+endstream
+endobj
+22 0 obj
+<<
+  /Title
+      (def  blankIndentedFunc)
+  /Parent
+      2 0 R
+  /Next
+      23 0 R
+  /Dest
+      [ 20 0 R /FitH 708.850393701 ]
+>>
+endobj
+23 0 obj
+<<
+  /Title
+      (def  tabIndentedFunc)
+  /Parent
+      2 0 R
+  /Prev
+      22 0 R
+  /Dest
+      [ 20 0 R /FitH 632.050393701 ]
+>>
+endobj
+xref
+0 24
+0000000000 65535 f
+0000000017 00000 n
+0000000109 00000 n
+0000000226 00000 n
+0000000296 00000 n
+0000000411 00000 n
+0000000531 00000 n
+0000000654 00000 n
+0000000781 00000 n
+0000000898 00000 n
+0000001020 00000 n
+0000001146 00000 n
+0000001276 00000 n
+0000001396 00000 n
+0000001516 00000 n
+0000001638 00000 n
+0000001764 00000 n
+0000001880 00000 n
+0000002002 00000 n
+0000002243 00000 n
+0000002375 00000 n
+0000002549 00000 n
+0000003167 00000 n
+0000003329 00000 n
+trailer
+<< /Size 24 /Root 1 0 R /Info 19 0 R>>
+startxref
+3489
+%%EOF

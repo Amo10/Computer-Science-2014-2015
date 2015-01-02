@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+echo "Executing current_pdb_dump.sql..."
+
+if [ -f finksql ]; then
+  ./finksql < current_pdb_dump.sql
+else
+  $HOME/bin/finksql < current_pdb_dump.sql
+fi
+
+exit 0
+

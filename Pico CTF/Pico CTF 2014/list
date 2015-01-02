@@ -1,0 +1,413 @@
+GET /wordpress/joswebpage/sample-page/ HTTP/1.1
+Host: sites.paideiaschool.org
+Cookie: __utma=268487342.1547932216.1401888454.1401888454.1401973937.2; __utmz=268487342.1401888454.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); wp-settings-124=mfold%3Do%26libraryContent%3Dbrowse%26editor%3Dhtml; wp-settings-time-124=1402003857; __utma=150072887.1088508462.1401987585.1401987585.1401987585.1; __utmz=150072887.1401987585.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+X-Purpose: preview
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Server: Microsoft-IIS/7.0
+X-Powered-By: PHP/5.3.10
+X-Pingback: http://sites.paideiaschool.org/wordpress/joswebpage/xmlrpc.php
+Link: <http://sites.paideiaschool.org/wordpress/joswebpage/?p=2>; rel=shortlink
+X-Powered-By: ASP.NET
+Date: Fri, 31 Oct 2014 17:41:40 GMT
+Content-Length: 8665
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Chemistry I | Jo&#039;s Webpage</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://sites.paideiaschool.org/wordpress/joswebpage/xmlrpc.php" />
+
+<!--Plugin WP Missed Schedule 2013.1231.2013 Build 2014-08-16 Reloaded Active - Tag 6707293c0218e2d8b7aa38d418ffa608-->
+
+<!-- This website is patched against a big problem not solved from WordPress 2.5+ to date -->
+
+<meta name='robots' content='noindex,follow
+' />
+<link rel="alternate" type="application/rss+xml" title="Jo&#039;s Webpage &raquo; Feed" href="http://sites.paideiaschool.org/wordpress/joswebpage/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Jo&#039;s Webpage &raquo; Comments Feed" href="http://sites.paideiaschool.org/wordpress/joswebpage/comments/feed/" />
+<link rel='stylesheet' id='smartfaq-style-css'  href='http://sites.paideiaschool.org/word
+press/joswebpage/wp-content/plugins/smart-faq/css/skin1.css?ver=1.2' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.5.2' type='text/css' media='all' />
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/smart-faq/js/smartfaq.min.js?ver=1.2'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://sites.paideiaschool.org/wordpress/joswebpage/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://sites.paideiaschool.org/wordpress/joswebpage/wp-includes/wlw
+manifest.xml" /> 
+<link rel='next' title='AP Chemistry' href='http://sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/' />
+<meta name="generator" content="WordPress 3.9.2" />
+<link rel='canonical' href='http://sites.paideiaschool.org/wordpress/joswebpage/sample-page/' />
+<link rel='shortlink' href='http://sites.paideiaschool.org/wordpress/joswebpage/?p=2' />
+</head>
+
+<body class="page page-id-2 page-parent page-
+template page-template-onecolumn-page-php custom-background">
+<div id="wrapper" class="hfeed">
+.<div id="header">
+..<div id="masthead">
+...<div id="branding" role="banner">
+........<div id="site-title">
+.....<span>
+......<a href="http://sites.paideiaschool.org/wordpress/joswebpage/" title="Jo&#039;s Webpage" rel="home">Jo&#039;s Webpage</a>
+.....</span>
+....</div>
+....<div id="site-description">Just another Paideia Network site</div>
+
+..........<img src="http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/themes/twentyten/images/headers/sunset.jpg" width="940" height="198" alt="" />
+........</div><!-- #branding -->
+
+...<div id="access" role="navigation">
+...  ....<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+........<div class="menu-header"><ul id="menu-my-menu" class="menu"><li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/"
+>Home</a></li>
+<li id="menu-item-9" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-has-children menu-item-9"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/sample-page/">Chemistry I</a>
+<ul class="sub-menu">
+.<li id="menu-item-147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-147"><a href="http:
+//sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/assignments/">Assignments</a></li>
+.<li id="menu-item-78" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-78"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/sample-page/extra-resources/">Extra Resources</a></li>
+.<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/new-chem-1-page/">New Chem 1 page</a></li>
+</ul>
+</li>
+<li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-14"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/">AP Chemistry</a>
+<ul class="sub-menu">
+.<li id="menu-item-148" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-148"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/sample-page/assignments/">Assignments</a></li>
+.<li id="menu-item-317" class="menu-item menu-
+item-type-post_type menu-item-object-page menu-item-317"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/new-ap-chem/">New AP Chem</a></li>
+</ul>
+</li>
+</ul></div>...</div><!-- #access -->
+..</div><!-- #masthead -->
+.</div><!-- #header -->
+
+.<div id="main">
+
+..<div id="container" class="one-column">
+...<div id="content" role="main">
+
+...
+
+....<div id="post-2" class="post-2 page type-page status-
+publish hentry">
+...........<h1 class="entry-title">Chemistry I</h1>
+.....
+.....<div class="entry-content">
+......<p>Welcome to Chem 1 at Paideia.</p>
+<h2>Handouts</h2>
+<p>The following are available for you... If you lose a lab or worksheet, you can download the full packets and print out the part that you need.</p>
+<ul>
+<li><span style="color: #0000ff;"><span style="color: #0000ff;"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/files/2012/08/Chem1-intro1.doc">ChemI-intro</a></span></span></li>
+<li><span style="color: #000000;"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/files/2012/08/ChemI-Worksheets-Terms-12.pdf">ChemI-Worksheets Terms 1&amp;2</a><br />
+</span></li>
+<li><span style="color: #0000ff;"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/files/2012/08/Elements-Polyatomic-ions.docx"><span style="color: #0000ff;">Elements &amp; Polyatomic ions</span></a></span></li>
+<li><a href="http://sites.paideiaschool.org/wordpress/joswebpage/files/2012/08/Chem1LabMan
+ualT-I.doc">Chem1 LabManual (Term I)</a></li>
+<li><a href="http://sites.paideiaschool.org/wordpress/joswebpage/files/2012/08/Chem1LabManualT-2.doc">Chem1 LabManual (Term 2)</a></li>
+</ul>
+<h2>Lunchtime Help Sessions</h2>
+<p>You...re welcome to ask for extra help anytime. But each day during lunch, one of us will make certain we are available in our classroom for questions.</p>
+<ul>
+<li>Monday: Jo</li>
+<li>Tuesday: Magnus
+</li>
+<li>Wednesday: Larry</li>
+<li>Thursday: Rick</li>
+</ul>
+<p>&nbsp;</p>
+.................</div><!-- .entry-content -->
+....</div><!-- #post-## -->
+
+....
+...<div id="comments">
+
+
+
+..
+</div><!-- #comments -->
+
+
+...</div><!-- #content -->
+..</div><!-- #container -->
+
+.</div><!-- #main -->
+
+.<div id="footer" role="contentinfo">
+..<div id="colophon">
+
+
+
+...<div id="site-info">
+....<a href="http://sites.paideiaschool.org/wordpress/joswebpage/" title="Jo&#039;s Webpage" rel="home">
+.....Jo&#039;s Webpage....</a>
+...</div><!-- #site-info -->
+
+...<div id="site-generator">
+........<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+...</div><!-- #site-generator -->
+
+..</div><!-- #colophon -->
+.</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+
+<!--Plugin WP Missed Schedule 2013.1231.2013 Build 2014-08-16 Reloaded Active - Tag 6707293c0218e2d8b7aa38d418ffa608-->
+
+<!-- This website is patched against a big problem not solved from WordPress 2.5+ to date -->
+
+<
+script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-includes/js/comment-reply.min.js?ver=3.9.2'></script>
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.40.0-2013.08.13'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/sites.paid
+eiaschool.org\/wordpress\/joswebpage\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.5.2'></script>
+</body>
+</html>
+
+GET /wordpress/joswebpage/ap-chemistry/assignments/ HTTP/1.1
+Host: sites.paideiaschool.org
+Cookie: __utma=268487342.1547932216.1401888454.1401888454.1401973937.2; __utmz=268487342.1401888454.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); wp-settings-124=mfold%3Do%26libraryContent%3Dbrowse%26editor%3Dhtml; wp-settings-time-124=1402003857; __utma=150072887.1088508462.1401987585.1401987585.1401987585.1; __utmz=150072887.1401987585.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+X-Purpose: preview
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/600.1.15 (KHTML, like Gecko) Version/8.0 Safari/600.1.15
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Server: Microsoft-IIS/7.0
+X-Powered-By: PHP/5.3.10
+X-Pingback: http://sites.paideiaschool.org/wordpress/joswebpage/xmlrpc.php
+Link: <http://sites.paideiaschool.org/wordpress/joswebpage/?p=124>; rel=shortlink
+X-Powered-By: ASP.NET
+Date: Fri, 31 Oct 2014 17:42:12 GMT
+Content-Length: 14032
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Assignments | Jo&#039;s Webpage</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://sites.paideiaschool.org/wordpress/joswebpage/xmlrpc.php" />
+
+<!--Plugin WP Missed Schedule 2013.1231.2013 Build 2014-08-16 Reloaded Active - Tag 6707293c0218e2d8b7aa38d418ffa608-->
+
+<!-- This website is patched against a big problem not solved from WordPress 2.5+ to date -->
+
+<meta name='robots' content='noindex,fol
+low' />
+<link rel="alternate" type="application/rss+xml" title="Jo&#039;s Webpage &raquo; Feed" href="http://sites.paideiaschool.org/wordpress/joswebpage/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Jo&#039;s Webpage &raquo; Comments Feed" href="http://sites.paideiaschool.org/wordpress/joswebpage/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Jo&#039;s Webpage &raquo; Assi
+gnments Comments Feed" href="http://sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/assignments/feed/" />
+<link rel='stylesheet' id='smartfaq-style-css'  href='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/smart-faq/css/skin1.css?ver=1.2' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.5.2' type='text/css' media='all' />
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/smart-faq/js/smartfaq.min.js?ver=1.2'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href
+="http://sites.paideiaschool.org/wordpress/joswebpage/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://sites.paideiaschool.org/wordpress/joswebpage/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Extra Resources' href='http://sites.paideiaschool.org/wordpress/joswebpage/sample-page/extra-resources/' />
+<link rel='next' title='Assignments' href='http://sites.paideiaschool
+.org/wordpress/joswebpage/sample-page/assignments/' />
+<meta name="generator" content="WordPress 3.9.2" />
+<link rel='canonical' href='http://sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/assignments/' />
+<link rel='shortlink' href='http://sites.paideiaschool.org/wordpress/joswebpage/?p=124' />
+</head>
+
+<body class="page page-id-124 page-child parent-pageid-13 page-template page-template-onecolumn-page-php custom-background">
+<div id="wrapper" class="hfeed">
+.<div id="header">
+..<div id="masthead">
+...<div id="branding" role="banner">
+........<div id="site-title">
+.....<span>
+......<a href="http://sites.paideiaschool.org/wordpress/joswebpage/" title="Jo&#039;s Webpage" rel="home">Jo&#039;s Webpage</a>
+.....</span>
+....</div>
+....<div id="site-description">Just another Paideia Network site</div>
+
+..........<img src="http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/themes/twentyten/images/headers/sunset.jpg" width="940" height="198" alt="" />
+........</div><!-- #branding -->
+
+...<div i
+d="access" role="navigation">
+...  ....<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+........<div class="menu-header"><ul id="menu-my-menu" class="menu"><li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/">Home</a></li>
+<li id="menu-item-9" class="m
+enu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-9"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/sample-page/">Chemistry I</a>
+<ul class="sub-menu">
+.<li id="menu-item-147" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-124 current_page_item menu-item-147"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/assignments/">Assignments</a></li>
+.<li id="menu-item-78" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-78"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/sample-page/extra-resources/">Extra Resources</a></li>
+.<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/new-chem-1-page/">New Chem 1 page</a></li>
+</ul>
+</li>
+<li id="menu-item-14" class="
+menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-page-parent menu-item-has-children menu-item-14"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/">AP Chemistry</a>
+<ul class="sub-menu">
+.<li id="menu-item-148" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-148"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/sample-pa
+ge/assignments/">Assignments</a></li>
+.<li id="menu-item-317" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-317"><a href="http://sites.paideiaschool.org/wordpress/joswebpage/ap-chemistry/new-ap-chem/">New AP Chem</a></li>
+</ul>
+</li>
+</ul></div>...</div><!-- #access -->
+..</div><!-- #masthead -->
+.</div><!-- #header -->
+
+.<div id="main">
+
+..<div id="container" class="one-column">
+...<div id="content" role="main">
+
+...
+
+....<div id="post-124" class="post-124 page type-page status-publish hentry">
+...........<h1 class="entry-title">Assignments</h1>
+.....
+.....<div class="entry-content">
+......<h2><strong>Unit 4: Naming Compounds</strong></h2>
+<ul>
+<li>Read Section 7.1, the first part of 7.2: Formation of an Ionic Bond, and 7.3. (Pages 394-404 and 414-427 in the iBook .)</li>
+<li>Chapter 7 problems: #48, 51, 52, 53, 55, 60, 73, 81-83, and questions 1-34 of Naming Worksheet 1, due Wednesday, October 29</li>
+<li><a href="http://quizlet.com/join/5FTBHRUuy/">Join the Chemistry class on Qu
+izlet</a> and practice Polyatomic ions and common names for transition metal ions.</li>
+<li><strong>Quiz over polyatomic ions: Wednesday, October 29<br />
+</strong></li>
+<li>Read Section 8.2</li>
+<li>Take <strong>online review quiz in Schoology</strong> by Tuesday, November 4</li>
+<li>Chapter 8 problems: #78, 79, 89, 92-96 and Naming Worksheets 1 and 2a (<a href="http://sites.paideiaschool.org/wordpress/davefergemann/fil
+es/2012/08/NamingChallenge2b.pdf">or 2b</a>) due Thursday, November 6.</li>
+<li><strong>Test: Monday, November 10</strong></li>
+</ul>
+<h2><strong>Unit 3: Chapters 5 and 6</strong></h2>
+<ul>
+<li>Read sections 5.2 and 5.3. Watch the video on <a href="http://www.showme.com/sh/?h=eg0sBcG">The Quantum Mechanical Model and Orbital Diagrams</a> by Friday, October 3.</li>
+<li>Chapter 5 problems:..#59, 61-64, 70, 71, 77, 78, 85-90, 92, due Tuesday, October 7.</li>
+<li>Read Chapter 6 and watch the <a href="http://www.showme.com/sh/?h=nuQrmGe">video on Periodic Trends</a>..by Thursday, October 9.</li>
+<li>Take the <strong>online review quiz in Schoology</strong> by Monday, October 20.</li>
+<li>Chapter 6 problems:..#39, 40, 41, 46, 49, 51, 58, 60, 61, 64, 65, 66, 69, 77, 78, 79, 89, 93 and Worksheets 1 and 2a (or <a href="http://sites.paideiaschool.org/wordpress/joswebpage/files/2013/08/Chapter-5-6-Challenge.pdf">Chapter 5-6 Challenge wksh #2b</a>), due Monday 10/20</li>
+</ul>
+<p><strong><span style="color: #ff0000;">Tes
+t: Ch. 5 &amp; 6.. on Wednesday, Oct. 22</span></strong></p>
+<h2><strong>Unit 2: Chapters 3 and 4</strong></h2>
+<ul>
+<li>Read Section 3.1 and watch the video on <a href="http://www.showme.com/sh/?h=XWHrztI">Properties of Matter</a> by Monday, September 15.</li>
+<li>Read Sections 3.2 ... 3.4, and watch two videos and take notes:..<a href="http://www.showme.com/sh/?h=SWZ3bcW">Laws of Definite Proportions and Multiple Propo
+rtions</a>..and <a href="http://www.showme.com/sh/?h=eWMSCki">Examples for Definite and Multiple Proportions</a> by Tuesday, September 16</li>
+<li>Chapter 3 problems:..# 38, 40, 41, 43, 46, 47, 48, 50, 51, 58, 60, 67, 71, 74, 75, 97, due Wednesday, September 17</li>
+<li>Take the <strong>online review quiz in Schoology</strong> by Monday, September 22.</li>
+<li>Read Sections 4.1-4.3 and watch video and take notes on <a href="http://www.showme.com/sh/?h=rVkMhuq">Atomic Structure</a> by Thursday, September 18.</li>
+<li>Problems from Chapter 4:..# 36, 39, 43-46, 51, 58, 62, 72, 74, 76, 77, 98, 101, 114 and Worksheets 1 and 2a (<span style="color: #3366ff;"><span style="color: #0000ff;">or</span> </span><a href="http://sites.paideiaschool.org/wordpress/joswebpage/files/2013/08/Chapter-3-4-Challenge.pdf"> Challenge worksheet #2b</a>)..due Wednesday, September 24.</li>
+</ul>
+<h3><strong>Test: Tuesday, September 30<br />
+</strong></h3>
+<p>Topics covered:</p>
+<ul>
+<li>Chapters 3 and 4, including the reading, videos, a
+nd lectures.</li>
+<li>Procedures and calculations from labs: Oleic Acid, Separation of a Mixture, Relative Masses of Atoms, and Isotope Lab</li>
+<li>All problems from assignments in book and worksheets</li>
+</ul>
+<p><b>Unit 1: Chapters 1.3 and 2</b></p>
+<ul>
+<li><b>Please <span style="text-decoration: underline;">take the Pretest</span></b>..in Schoology by Friday, August 22. This does not count for a grade, but will hel
+p us know how much time to spent on various topics, based on what you already know.</li>
+<li><b>Video for Friday, August 22</b>: The <a title="Lab Safety video" href="http://vimeo.com/6170550" target="_blank">Lab Safety video</a>. This video was made in 1991 and it...s pretty cheesy, but it covers a lot of important information. So laugh at the music and the clothing, but take notes on the safety rules. You can skip the section from 19:30-23:00, which covers equipment you won...t be using this year. Then take the <span style="text-decoration: underline;">Lab Safety Quiz</span> in Schoology.</li>
+<li><b>Reading assignment</b>: Read Section 1.3 and Chapter 2 from the Chemistry book by Monday, August 25</li>
+<li><a href="http://www.showme.com/sh/?h=tckaPSK"><b>Video: Metric System</b></a><b>...</b>Watch and take notes. Deadline: Before the start of school on Monday, August 25.</li>
+<li><b>Problem set:</b>..Chapter 1 # 40-43. Chapter 2 #64, 67, 68, 77, 78acgj, 79acef, 80, 82, 84, 89-93, 104, 106, 114, 120. Worksh
+eets 1 and 2a from worksheet packet. ..Due Tuesday, September 9...You may do <span style="text-decoration: underline;">Optional <a href="http://sites.paideiaschool.org/wordpress/joswebpage/files/2013/08/WkshCh1-2-challenge2b.docx">WkshCh1-2 challenge2b</a></span> in place of 2a if you want an extra challenge.</li>
+<li><b>Videos</b>: Watch and take notes on these before the start of school on Thursday, August 28...There a
+re four of them but the last two are shorter.
+<ul>
+<li><a href="http://www.showme.com/sh/?h=9H7CReq">Accuracy and Precision</a></li>
+<li><a href="http://www.showme.com/sh/?h=THUgkq0">Significant Figures</a></li>
+<li><a href="http://www.khanacademy.org/math/algebra/exponents-radicals/v/multiplying-and-dividing-with-significant-figures">Multiplying and Dividing with Significant Figures</a></li>
+<li><a href="http://www.khanacademy.org/math/algebra/exponents-radicals/v/addition-and-subtraction-with-significant-figures">Addition and Subtraction with Significant Figures</a></li>
+</ul>
+</li>
+</ul>
+<p><b>Test: Thursday, September 11</b></p>
+<p>The test will cover the following:</p>
+<ul>
+<li>Chapters 1.3 and 2 in the book</li>
+<li>All videos listed above</li>
+<li>Worksheets 1, 2a, and the homework problems listed above</li>
+<li>All labs we have done so far</li>
+<li>The symbols for the elements listed in the first column of page 3 in your worksheet packet. You may want to use <a href="http://quizlet.com/13393411/elemen
+ts-flash-cards/">this quizlet</a> to help you study.</li>
+</ul>
+<p>&nbsp;</p>
+.................</div><!-- .entry-content -->
+....</div><!-- #post-## -->
+
+....
+...<div id="comments">
+
+
+
+..
+</div><!-- #comments -->
+
+
+...</div><!-- #content -->
+..</div><!-- #container -->
+
+.</div><!-- #main -->
+
+.<div id="footer" role="contentinfo">
+..<div id="colophon">
+
+
+
+...<div id="site-info">
+....<a href="http://sites.paideiaschool.org
+/wordpress/joswebpage/" title="Jo&#039;s Webpage" rel="home">
+.....Jo&#039;s Webpage....</a>
+...</div><!-- #site-info -->
+
+...<div id="site-generator">
+........<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+...</div><!-- #site-generator -->
+
+..</div><!-- #colophon -->
+.</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+
+<!--Plugin WP Missed Schedule 2013.1231.2013 Build 2014-08-16 Reloaded Active - Tag 6707293c0218e2d8b7aa38d418ffa608-->
+
+<!-- This website is patched against a big problem not solved from WordPress 2.5+ to date -->
+
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-includes/js/comment-reply.min.js?ver=3.9.2'></script>
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.40.0-2013.08.13'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/sites.pa
+ideiaschool.org\/wordpress\/joswebpage\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://sites.paideiaschool.org/wordpress/joswebpage/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.5.2'></script>
+</body>
+</html>
+

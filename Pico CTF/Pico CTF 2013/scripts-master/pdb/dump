@@ -1,0 +1,431 @@
+#!/usr/bin/perl -w
+# -*- mode: Perl; tab-width: 4; -*-
+#
+# dump - generate SQL for Fink's online package database
+# Copyright (c) 2001 Christoph Pfisterer
+# Copyright (c) 2001-2008 The Fink Package Manager Team
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+
+$| = 1;
+use 5.008_001;  # perl 5.8.1 or newer required
+use strict;
+use warnings;
+
+### now load the useful modules
+
+use lib qw(basepath/perlmod);
+use Fink::Services qw(&read_config &latest_version);
+use Fink::Config qw(&set_options);
+use Fink::Package;
+use Fink::Command qw(rm_f);
+use File::Path;
+use File::stat;
+use POSIX qw(strftime);
+use Time::HiRes qw(usleep);
+use Data::Dumper;
+use IO::Handle;
+
+use Getopt::Long;
+
+use vars qw(
+	$dbh
+	$get_release
+
+	$insert_package
+	$delete_packages
+	$update_package
+	$update_timestamp
+	$get_package
+	$get_deleted
+
+	@package_keys
+	$distribution
+	$release
+	$architecture
+	$rel_id
+	$lucene
+	$indexpath
+	$wanthelp
+
+	$tree
+	$rel
+
+	$q
+	$mysql_datafile
+	$mysql_data
+
+	$last_updated
+);
+
+$last_updated = time;
+
+# temporarily send stdout to stderr
+open(OLDOUT, ">&STDOUT");
+open(STDOUT, ">&STDERR") or die "Can't dup stderr";
+select(OLDOUT); select(STDOUT);  # keep 'use strict' happy
+
+# process command-line
+GetOptions(
+    'distribution:s' => \$distribution,
+    'release:s'      => \$release,
+    'architecture:s' => \$architecture,
+    'rel_id:s'       => \$rel_id,
+    'lucene'         => \$lucene,
+	'indexpath:s'    => \$indexpath,
+    'help'           => \$wanthelp,
+    ) or &die_with_usage;
+&die_with_usage if $wanthelp;
+&die_with_usage if (defined $distribution && not ($distribution =~ /^[0-9a-z.\-]{2,}$/));
+&die_with_usage if (defined $release && not ($release =~ m/^[0-9.]{3,}$|^unstable$|^stable$/));
+&die_with_usage if (defined $architecture && not ($architecture =~ m/^powerpc$|^i386$/));
+#$architecture = 'powerpc' unless defined $architecture;
+
+### connect to database
+
+if (not eval { require DBI }) {
+  print "\nWARNING: Unable to connect to DB (DBI Perl module not found!)\n\n";
+  if ((not defined $rel_id) || (not $rel_id =~ m/^[0-9]+$/)) {
+    die("Call with '--rel_id=...' to specify the corresponing release id. Stopped");
+  }
+  $tree = $release if (defined $release);
+  $tree = 'stable' if (defined $tree && $release =~ m/^[0-9.]{3,}$/);
+} else {
+
+### Try to connect to DB
+
+$mysql_datafile = "./.finkdbi";
+if (not -f $mysql_datafile) {
+  $mysql_datafile = $ENV{HOME}."/.finkdbi";
+}
+chomp($mysql_data = `cat $mysql_datafile`);
+$dbh = DBI->connect(split(/\|/, $mysql_data, { AutoCommit => 0 }));
+
+### query to insert a package
+@package_keys = ('rel_id', 'name', 'version', 'revision', 'epoch', 'descshort', 'desclong', 'descusage', 'maintainer', 'license', 'homepage', 'section', 'parentname', 'infofile', 'infofilechanged', 'summary_index', 'last_updated');
+
+$delete_packages  = $dbh->prepare("DELETE FROM \`package\` WHERE rel_id=? AND last_updated < ?");
+$insert_package   = $dbh->prepare("INSERT INTO \`package\` (\`" . join("\`, \`", @package_keys) . "\`) VALUES (" . join (", ", map { "?" } @package_keys) . ")");
+$update_package   = $dbh->prepare("UPDATE \`package\` SET " . join(", ", map { "\`$_\`=?" } @package_keys) . " WHERE pkg_id=?");
+$update_timestamp = $dbh->prepare("UPDATE \`package\` SET last_updated=? WHERE pkg_id=?");
+$get_package      = $dbh->prepare("SELECT \`pkg_id\`, \`" . join("\`, \`", @package_keys) . "\` FROM \`package\` WHERE rel_id=? AND name=? AND version=? AND revision=? AND epoch=?");
+$get_deleted      = $dbh->prepare("SELECT \`pkg_id\`, \`" . join("\`, \`", @package_keys) . "\` FROM \`package\` WHERE rel_id=? AND last_updated < ?");
+
+### get distributions/releases
+
+$q = "SELECT r.*,d.* FROM `distribution` d ";
+$q .= "INNER JOIN `release` r ON r.dist_id = d.dist_id ";
+$q .= "WHERE d.active AND r.active ";
+if (defined $distribution) {
+  $q .= "AND d.identifier='$distribution' ";
+}
+if (defined $release) {
+  if ($release =~ m/^unstable$|^stable$/) {
+    $q .= "AND r.type='$release' ";
+  } else {
+    $q .= "AND r.version='$release' ";
+  }
+}
+if (defined $architecture) {
+  $q .= "AND d.architecture='$architecture' ";
+}
+$q .= "ORDER BY d.priority DESC,r.priority DESC;";
+
+$dbh->do($q);
+$get_release = $dbh->prepare($q);
+$get_release->execute();
+my $numRows = $get_release->rows;
+if ($numRows < 1) {
+  print "No matching releases found!\n";
+} else {
+  if ($numRows > 1) {
+    print "Found more than one release (sorted by priority):\n";
+  } else {
+    print "# Dumping packages for release:\n";
+  }
+  printf "# %3s %12s %8s %8s %8s\n", 'id', 'identifier', 'arch', 'type', 'version';
+  while ($rel = $get_release->fetchrow_hashref()) {
+    printf "# %3s %12s %8s %8s %8s\n", "$rel->{'rel_id'}", "$rel->{'identifier'}", "$rel->{'architecture'}", "$rel->{'type'}", "$rel->{'version'}";
+    # Set all values, even if not given on command line
+    $rel_id = $rel->{'rel_id'};
+    $distribution = $rel->{'identifier'};
+    $architecture = $rel->{'architecture'};
+    if ($rel->{'type'} eq 'bindist') {
+      $tree = 'stable';
+    } else {
+      $tree = $rel->{'type'};
+    }
+  }
+  printf "\n";
+}
+
+$get_release->finish();
+
+&die_with_usage if ($numRows != 1); # nothing to do
+
+} # if (eval { require DBI })
+
+&die_with_usage if (not defined $distribution);
+&die_with_usage if (not defined $release);
+&die_with_usage if (not defined $architecture);
+&die_with_usage if ($lucene and not defined $indexpath);
+
+### set up our fink
+
+open (BASEPATH, "basepath_fink.inc") || die "couldn't open 'basepath_fink.inc'!";
+my $basepath = <BASEPATH>;
+close(BASEPATH);
+chomp $basepath;
+
+# if possible, use a symlink $distribution-$tree -> $tree
+# so that each .info pathname is unique across all distributions
+# (since we may use the dists/ symlink not the actual $distribution dir)
+my $treelink = "$basepath/fink/dists/$distribution-$tree";
+rm_f $treelink;
+my $disttree = $tree;
+if (-e $treelink) {
+  print "Could not remove old $treelink\n";
+  undef $treelink;
+} else {
+    if (symlink $tree, $treelink) {
+       $disttree = "$distribution-$tree";
+    } else {
+      print "Could not create symlink $treelink: $!\n";
+      undef $treelink;
+    }
+}
+
+# simulate a fink.conf; there's no actual file, so don't save() it
+my $config = Fink::Config->new_from_properties({
+	'basepath'     => $basepath,
+	'trees'        => "$disttree/main $disttree/crypto",
+	'distribution' => $distribution,
+	'architecture' => $architecture,
+});
+
+# omit actual locally-installed fink if it is present
+set_options({exclude_trees=>[qw/status virtual/]});
+
+# load the package database
+Fink::Package->require_packages();
+
+# restore stdout
+open(STDOUT, ">&OLDOUT");
+
+### first drop the previous data, then add packages again, doing one 
+### release at a time, in one transaction
+
+print "# Begin dump release id = $rel_id\n";
+$dbh->begin_work();
+print "# dumping new packages\n";
+
+### loop over packages
+
+my ($package, $po, $version, $vo);
+my ($maintainer, $email, $desc, $usage, $parent, $infofile, $infofilechanged);
+my ($v, $s, $key, %data, $expand_override);
+
+my $added_file   = IO::Handle->new();
+my $changed_file = IO::Handle->new();
+my $deleted_file = IO::Handle->new();
+
+open($added_file,   '>>lucene_added.txt')   or die "can't write to lucene_added.txt: $!";
+open($changed_file, '>>lucene_changed.txt') or die "can't write to lucene_changed.txt: $!";
+open($deleted_file, '>>lucene_deleted.txt') or die "can't write to lucene_deleted.txt: $!";
+
+foreach $package (Fink::Package->list_packages()) {
+  $po = Fink::Package->package_by_name($package);
+  next if $po->is_virtual();
+  $version = &latest_version($po->list_versions());
+  $vo = $po->get_version($version);
+  
+  # Skip splitoffs
+  #next if $vo->has_parent();
+
+  # get info file
+  $infofile = $vo->get_info_filename();
+  if ($infofile) {
+    my $sb = stat($infofile);
+    $infofile =~ s/$treelink\///s if defined $treelink;
+    my $dist_dir = readlink($config->{'basepath'} . "/fink/dists");
+    $infofile = "fink/dists/$dist_dir/$tree/$infofile";
+    $infofilechanged = strftime "%Y-%m-%d %H:%M:%S", localtime $sb->mtime;
+  }
+  
+  # gather fields
+
+  $maintainer = $vo->param_default("Maintainer", "(not set)");
+
+  # Always show %p as '/sw'
+  $expand_override->{'p'} = '/sw';
+
+  $desc = $vo->param_default_expanded('DescDetail', '',
+    expand_override => $expand_override,
+    err_action => 'ignore'
+  );
+  chomp $desc;
+  $desc =~ s/\s+$//s;
+  $desc =~ s/\n/\\n/g;
+ 
+  $usage = $vo->param_default_expanded('DescUsage', '',
+    expand_override => $expand_override,
+    err_action => 'ignore'
+  );
+  chomp $usage;
+  $usage =~ s/[\r\n\s]+$//s;
+  #$usage =~ s/\n/\\n/g;
+
+  my $word_index = {};
+  my $summary_index = join(" ", $vo->get_name(), $vo->get_shortdescription(), $desc, $usage);
+  $summary_index =~ s/\\[rn]/ /gs;
+  $summary_index =~ s/[^\s\r\n[:alnum:]\:\-\_]+/ /gs;
+  for my $word (split(/\s+/s, $summary_index)) {
+    $word_index->{lc($word)}++ if (length($word) >= 3);
+  }
+  $summary_index = join(" ", sort keys %$word_index);
+
+  my $package_info = {
+    rel_id          => $rel_id,
+    name            => $vo->get_name(),
+    version         => $vo->get_version(),
+    revision        => $vo->get_revision(),
+    epoch           => $vo->get_epoch(),
+    descshort       => $vo->get_shortdescription(),
+    desclong        => $desc,
+    descusage       => $usage,
+    maintainer      => $maintainer,
+    license         => $vo->get_license(),
+    homepage        => $vo->param_default("Homepage", ""),
+    section         => $vo->get_section(),
+    parentname      => $vo->has_parent()? $vo->get_parent()->get_name():undef,
+    infofile        => $infofile,
+    infofilechanged => $infofilechanged,
+    summary_index   => $summary_index,
+    last_updated    => $last_updated,
+  };
+
+  $get_package->execute($rel_id, $vo->get_name(), $vo->get_version(), $vo->get_revision(), $vo->get_epoch()) or die "unable to execute \$get_package\n";
+  if ($get_package->rows == 1) {
+    my $p = $get_package->fetchrow_hashref();
+
+    my $changed = {};
+
+    for my $key (grep(!/^(pkg_id|infofile|infofilechanged|summary_index|last_updated)$/, @package_keys)) {
+      if (
+        (exists $package_info->{$key} and not exists $p->{$key}) or
+        (exists $p->{$key} and not exists $package_info->{$key}) or
+        (defined $package_info->{$key} and not defined $p->{$key}) or
+        (defined $p->{$key} and not defined $package_info->{$key}) or
+        (defined $package_info->{$key} and defined $p->{$key} and $package_info->{$key} ne $p->{$key})
+      ) {
+        print "# changed($key): $package-$version\n";
+        $changed->{$key} = $package_info->{$key};
+      }
+    }
+
+    if (keys %$changed) {
+      print "# changed: $package-$version\n";
+      $package_info->{'pkg_id'} = $p->{'pkg_id'};
+      $update_package->execute(map({ $package_info->{$_} } @package_keys), $p->{'pkg_id'}) or warn "failed to update package: " . $update_package->errstr;
+      $update_package->finish();
+      print_lucene_journal($changed_file, $package_info);
+    } else {
+      print "# unchanged: $package-$version\n";
+      $update_timestamp->execute($last_updated, $p->{'pkg_id'});
+      $update_timestamp->finish();
+    }
+  } elsif ($get_package->rows > 1) {
+    die "whoa, got back more than one matching package for " . $vo->get_name() . "\n";
+  } else {
+    print "# new: $package-$version\n";
+    $insert_package->execute( map { $package_info->{$_} } @package_keys) or warn "failed to add package: " . $insert_package->errstr;
+    $insert_package->finish();
+    $get_package->finish(); # finish off the old one, we start a new
+
+    $get_package->execute($rel_id, $vo->get_name(), $vo->get_version(), $vo->get_revision(), $vo->get_epoch()) or warn "failed to get package: " . $get_package->errstr;
+    if ($get_package->rows != 1) {
+      die "a package was added to the database, but could not be found!"
+    }
+    my $pkg = $get_package->fetchrow_hashref();
+    print_lucene_journal($added_file, $pkg);
+  }
+  $get_package->finish();
+
+  usleep(100);
+}
+
+$dbh->commit() or die "failed to commit info file updates: " . $dbh->errstr;
+
+$dbh->begin_work();
+$get_deleted->execute($rel_id, $last_updated) or die "unable to get deleted pkg IDs: " . $get_deleted->errstr;
+if ($get_deleted->rows) {
+  while (my $pkg = $get_deleted->fetchrow_hashref()) {
+    print_lucene_journal($deleted_file, $pkg);
+  }
+}
+$get_deleted->finish();
+$delete_packages->execute($rel_id, $last_updated);
+$delete_packages->finish();
+$dbh->commit() or die "unable to commit package deletion: " . $dbh->errstr;
+
+close ($added_file);
+close ($changed_file);
+close ($deleted_file);
+
+$dbh->do("OPTIMIZE TABLE \`package\`");
+print "# End dump release id = $rel_id\n";
+
+if (defined $treelink) {
+    rm_f $treelink or print "Could not remove $treelink\n";
+}
+
+$dbh->disconnect();
+
+sub print_lucene_journal {
+	my $handle  = shift;
+	my $package = shift;
+
+	print $handle "# ", join('-', $package->{'rel_id'}, $package->{'epoch'}, $package->{'name'}, $package->{'version'}, $package->{'revision'}), "\n";
+	print $handle $package->{'pkg_id'}, "\n";
+}
+
+sub die_with_usage {
+    die <<EOMSG;
+Usage: $0 [options]
+
+Options:
+  --distribution
+  --release
+  --architecture
+  --lucene
+  --indexpath
+  --help
+
+'distribution' is the distribution identifier (e.g. '10.4' or '10.2-gcc3.3')
+'release' is either a release version (e.g. 0.6.4) for bindists or the strings
+  'unstable' or 'stable'
+'architecture' is either 'powerpc' or 'i386'
+
+If 'lucene' is set, and an index path is provided, dump will create an
+index for a lucene search engine indexer.
+EOMSG
+}
+
+### eof
+exit 0;
+
+
+# vim: ts=4 sw=4 noet

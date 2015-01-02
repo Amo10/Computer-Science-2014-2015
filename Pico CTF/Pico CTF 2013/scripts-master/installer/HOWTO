@@ -1,0 +1,105 @@
+NOTE: as of 25 October 2011, the buildpkg.sh script is not likely to work with
+versions of OS X prior to 10.5 (maybe even 10.7).  If necessary, older versions
+of buildpkg.sh can be obtained from the old read-only CVS repository.
+
+Setup environment variables: 
+ BINDIST_VERSION is the version of fink you want to install, as a numerical
+ triplet value such as 0.4.5
+
+ ARCH is the architecture being used (PowerPC, Intel, or x86_64)
+
+ OSX_VERSION is the (minimum) OS X version for this installation
+
+ IN_BASEDIR is the directory containing this script (full pathname, with
+ no trailing slash).  You are going to need /sw to be clear for this 
+ installation, so if you move /sw to another location such as /sw.orig, 
+ be sure to reset IN_BASEDIR to the correct value. IN_BASEDIR should
+ not contain any spaces, quotes, or metachars.
+
+ FINK_ROOT is the path for the Fink install location.  This will almost
+ always be /sw, but can be set to another value, which is useful really
+ only for testing.
+ If FINK_ROOT is not set, then it defaults to /sw.
+
+TODO: figure out how to patch destined $target_OSX and $target_CPU
+into InstallationCheck and *.lproj/InstallationCheck.strings
+
+Step 1:
+ Clear out $FINK_ROOT so that a fresh version can be installed there.
+
+Step 2:
+ Download fink-BINDIST_VERSION-full.tar.gz from sourceforge (or use the copy
+ you generated when building the srcdist), unpack it and run "./bootstrap",
+ installing into $FINK_ROOT.  Accept all default choices during configuration.
+
+Step 2A:
+ Make sure that the file CURRENT-FINK-$OSX_VERSION is present on the fink
+ website, and run "$FINK_ROOT/bin/fink selfupdate", selecting option 3 (stick to
+ point releases).
+
+Step 3:
+ Run "$FINK_ROOT/bin/fink update-all" in case there were updates to base-packages 
+ since the last package manager release.
+
+Step 4:
+ Remove all .deb's in $FINK_ROOT/fink/dists/stable/main/binary-darwin-x86_64/* , 
+ and then remove all symlinks from $FINK_ROOT/fink/debs - you can do this by doing:
+ "sudo find $FINK_ROOT/fink -name '*.deb' -exec rm -rf {} \;"
+
+Step 5:
+ Remove $FINK_ROOT/src/*
+
+Step 6:
+ Run "$FINK_ROOT/bin/fink scanpackages", and then "sudo $FINK_ROOT/bin/apt-get update" to 
+ properly prepare for distribution. 
+
+Step6a:
+ Run "$FINK_ROOT/bin/fink list --installed" to be ready with the information when 
+ needed in step 8.
+
+Step 6b:
+ Check permissions in your $FINK_ROOT directory to verify things are world-readable 
+ when appropriate
+
+Step 6c:
+ Run "chmod 1755 $IN_BASEDIR/contents" to get the permissions of the 
+ "contents" directory to match those of / on the target machine.
+
+Step 7:
+ Move the entire $FINK_ROOT directory into a subdirectory of $IN_BASEDIR/contents 
+ (that is, you should have a directory $IN_BASEDIR/contents$FINK_ROOT/ when you are 
+ finished).
+ Run "sudo cp -Rp $FINK_ROOT $IN_BASEDIR/contents" to copy.  This preserves internal
+ file permissions.
+
+Step 7a:
+ Update the copy of FinkCommander in $IN_BASEDIR/dmg to the latest version.
+
+Step 8.
+ Use TextEdit to examine the files in the resources and dmg subdirs of 
+ IN_BASEDIR, editing if necessary. You will need to edit the list of 
+ installed packages which appears at the end of resources/ReadMe.rtf. 
+ Leave the OSX_VERSION, BINDIST_VERSION, ARCH, and IN_VERSION variables as-is;
+ these will be replaced by the script. (IN_VERSION is replaced by 
+ BINDIST_VERSION-ARCH.)
+
+ Be sure to clean out any *~ files or other stray files generated during 
+ editing.
+
+Step 9.
+ Run "sudo ./buildpkg.sh" (use "sudo -E" on 10.6+) This should copy the 
+ resources and dmg directories, subsituting versions in the various read 
+ me files. It will then create the pkg file in the dmg-BINDIST_VERSION-ARCH 
+ directory. Then, a .dmg will be created and end up in the IN_BASEDIR. The 
+ Volume name should be "Fink BINDIST_VERSION-ARCH Installer". 
+ 
+Step 10.
+ Mount and test the .dmg. Send it to someone else to test before release 
+ as well.
+
+Step 11.
+ Commit your revised versions of the .rtf and other files to CVS for the 
+ benefit of future releases. Tag the CVS with a release tag of the form
+ release_x_y_z .
+
+That's it, you're done!  
